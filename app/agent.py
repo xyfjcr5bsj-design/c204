@@ -58,10 +58,11 @@ class LiBaiAgent:
         hits = self.knowledge_base.search(question)
         if not hits:
             return (
-                "未检索到直接相关的记录。我可以从《全唐诗》、"
-                "李白年谱或唐代地理志里继续查找，请换个问法。"
+                "未检索到直接相关的记录。我可从《全唐诗》、"
+                "李白年谱、唐代地理志或唐前史略中继续查找，请换个问法。"
             )
-        lines = ["根据资料，整理如下："]
+        lines = ["太白揖首相答：", "据案前典籍，整理如下："]
         for entry in hits:
             lines.append(f"- 【{entry.source}·{entry.title}】{entry.text}")
+        lines.append("若需更详尽的篇章，请再问。")
         return "\n".join(lines)
